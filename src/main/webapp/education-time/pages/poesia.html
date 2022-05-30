@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Education Time | Style Demo</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" href="../layout/styles/layout.css" type="text/css" />
+</head>
+<body id="top">
+<div class="wrapper row1">
+  <div id="header" class="clear">
+    <div class="fl_left">
+      <h1><a href="../index.html">App.render</a></h1>
+      <p>Site Educacional</p>
+    </div>
+    <form action="http://localhost:8089/WolframAlpha/BancoAPI" method="get" id="login">
+      <fieldset>
+        <legend>Login</legend>
+        <input name="senha" type="password" placeholder="Senha" />
+        <input name="user" type="text" placeholder="Usuário"/>
+        <div id="forgot"><a href="#" onclick="CadastroLogin('cadastro')">Ainda não possui cadastro?</a></div>
+        <input type="submit" src="../layout/images/sign_in.gif" id="signin" alt="Sign In" />
+      </fieldset>
+    </form>
+    <form action="http://localhost:8089/WolframAlpha/BancoAPI" method="post" id="cadastro" style="display:none;">
+      <fieldset>
+        <legend>Cadastro</legend>
+        <input name="user" type="text" placeholder="Usuário"/>
+        <input name="email" type="text" placeholder="Email"/>
+        <input type="submit" src="../layout/images/sign_in.gif" id="signin" alt="Sign In" />
+        <input name="senha" type="password" placeholder="Senha"/>
+        <div id="forgot"><a href="#" onclick="CadastroLogin('login')">Já possui cadastro??</a></div>
+      </fieldset>
+    </form>
+  </div>
+</div> 
+<!-- ####################################################################################################### -->
+<div class="wrapper row2">
+  <div id="topnav">
+    <ul>
+      <li><a href="../index.html">Home</a></li>
+      <li class="active"><a href="">POESIAS</a></li>
+      <li><a href="full-width.html">IA RESPONDE</a></li>
+    </ul>
+    <div  class="clear"></div>
+  </div>
+</div>
+<!-- ####################################################################################################### -->
+<div class="wrapper row4">
+  <div id="container" class="clear"> 
+    <!-- ####################################################################################################### -->
+    <div id="content">
+      
+      <label for="cars">Escolher Poesia:</label>
+	  <select id="poetas">
+	    <option value="Ozymandias">Ozymandias</option>
+	    <option value="The Moon Maiden's Song">The Moon Maiden's Song</option>
+	    <option value="I have a Bird in spring">I have a Bird in spring</option>
+	    <option value="A spring poem from bion">A spring poem from bion</option>
+	    <option value="In spring and summer winds may blow">In spring and summer winds may blow</option>
+	    <option value="Sonnet 98: From you have I been absent in the spring">Sonnet 98: From you have I been absent in the spring</option>
+	  </select>
+	  <button id="btn" onclick="GetPoesia()">Ver</button>
+	  </br></br>
+	  <div id="textContent">
+	  
+	  </div>
+      
+      
+    </div>
+    <div id="column">
+      <div id="featured">
+        <ul>
+          <li>
+            <p>"Ousarei expor aqui a mais importante, a maior, a mais útil regra de toda a educação? É não ganhar tempo, mas perdê-lo." - <h3>Jean Jacques Rousseau</h3>
+            </p>
+          </li>
+          <li>
+          <p>"Acreditamos que a educação sozinha não transforma a sociedade, sem ela tampouco a sociedade muda.
+Se a nossa opção é progressiva, se estamos a favor da vida e não da morte, da equidade e não da injustiça, do direito e não do arbítrio, da convivência com o diferente e não de sua negação, não temos outro caminho se não viver a nossa opção.
+Encarná-la, diminuindo, assim, a distância entre o que dizemos e o que fazemos." - <h3>Paulo Freire<h3/>
+          </p>
+          </li>
+          <li>
+          <p>"A educação tem raízes amargas, mas os seus frutos são doces." - <h3>Aristóteles<h3/>
+          </p>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- ####################################################################################################### -->
+    <div class="clear"></div>
+  </div>
+</div>
+<!-- ####################################################################################################### -->
+<div class="wrapper row5">
+  <div id="footer" class="clear"> 
+    <!-- ####################################################################################################### -->
+    <div class="foot_contact">
+      <h2>App.render</h2>      
+    </div>    
+    <div class="footbox last">
+      <h2>POESIA</h2>      
+    </div>
+    <!-- ####################################################################################################### --> 
+  </div>
+</div>
+<!-- ####################################################################################################### -->
+<div class="wrapper">
+  <div id="copyright" class="clear">
+    <p class="fl_left">Copyright &copy; 2022 - Todos os Direitos Reservados - <a href="#">App.render</a></p>
+  </div>
+</div>
+<script type="text/javascript">
+	function GetPoesia() {
+		var field = document.getElementById('textContent');
+		var content = document.getElementById('poetas').value;
+		console.log('contetnt => '+content);			
+		var url = encodeURI('http://localhost:8089/WolframAlpha/ApiBook?content='+content);
+		console.log('url => '+url);
+		fetch(url)
+		.then((response) => response.json())
+   		.then((responseJSON) => {		
+   			console.log(responseJSON[0]["title"]);
+   			var poesia = '<h2>' +responseJSON[0]["title"]+ '</h2><p><h5> Autor: ' +responseJSON[0]["author"]+ '</h5></p>';
+   			console.log('responseJSON["lines"] ==>> '+responseJSON[0]["lines"]);
+   			field.innerHTML = poesia;
+   			for (let i = 0; i < responseJSON[0]["lines"].length; i++) {
+   				poesia += "<p>" + responseJSON[0]["lines"][i] + "</p>";
+   			}
+   			field.innerHTML = poesia;
+		})
+		.catch(function(error) {
+			console.log(error.message);
+		});
+	}
+
+	function CadastroLogin(type) {
+		if(type == 'login'){
+			document.getElementById("login").style.display = 'block';
+			document.getElementById("cadastro").style.display = 'none';
+		}
+		else if(type == 'cadastro'){
+			document.getElementById("cadastro").style.display = 'block';
+			document.getElementById("login").style.display = 'none';
+		}
+	}
+</script>
+</body>
+</html>

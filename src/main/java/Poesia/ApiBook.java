@@ -1,4 +1,4 @@
-package wolframapha.api;
+package Poesia;
 
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
@@ -7,21 +7,17 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Date;
-
-import wolframapha.api.AlphaApi;
 
 /**
- * Servlet implementation class Api
+ * Servlet implementation class ApiBook
  */
-
-public class Api extends HttpServlet {
+public class ApiBook extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Api() {
+    public ApiBook() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -50,8 +46,8 @@ public class Api extends HttpServlet {
 		String content = request.getParameter("content");
 		System.out.println("content => "+content);
 		if(content != null) {
-			AlphaApi alpha = new AlphaApi();
-			response.getWriter().append(alpha.test(content));		
+			BookController book = new BookController();
+			response.getWriter().append(book.BookController(content));		
 		}
 	}
 

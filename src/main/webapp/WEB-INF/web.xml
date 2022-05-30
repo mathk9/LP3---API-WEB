@@ -19,4 +19,34 @@
     <servlet-name>Api</servlet-name>
     <url-pattern>/Api</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>BancoAPI</display-name>
+    <servlet-name>BancoAPI</servlet-name>
+    <servlet-class>DAO.BancoAPI</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BancoAPI</servlet-name>
+    <url-pattern>/BancoAPI</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ApiBook</display-name>
+    <servlet-name>ApiBook</servlet-name>
+    <servlet-class>Poesia.ApiBook</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ApiBook</servlet-name>
+    <url-pattern>/ApiBook</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ChartAPI</display-name>
+    <servlet-name>ChartAPI</servlet-name>
+    <servlet-class>DAO.ChartAPI</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ChartAPI</servlet-name>
+    <url-pattern>/ChartAPI</url-pattern>
+  </servlet-mapping>
 </web-app>

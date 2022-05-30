@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Education Time</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" href="layout/styles/layout.css" type="text/css" />
+<script type="text/javascript" src="layout/scripts/jquery.min.js"></script>
+<!-- liteAccordion is Homepage Only -->
+<link rel="stylesheet" href="layout/scripts/liteaccordion-v2.2/css/liteaccordion.css" type="text/css" />
+</head>
+<body id="top">
+<div class="wrapper row1">
+  <div id="header" class="clear">
+    <div class="fl_left">
+      <h1><a href="../index.html">App.render</a></h1>
+      <p>Site Educacional</p>
+    </div>
+    <form action="http://localhost:8089/WolframAlpha/BancoAPI" method="get" id="login">
+      <fieldset>
+        <legend>Login</legend>
+        <input name="senha" type="password" placeholder="Senha" />
+        <input name="user" type="text" placeholder="Usuário"/>
+        <div id="forgot"><a href="#" onclick="CadastroLogin('cadastro')">Ainda não possui cadastro?</a></div>
+        <input type="submit" src="../layout/images/sign_in.gif" id="signin" alt="Sign In" />
+      </fieldset>
+    </form>
+    <form action="http://localhost:8089/WolframAlpha/BancoAPI" method="post" id="cadastro" style="display:none;">
+      <fieldset>
+        <legend>Cadastro</legend>
+        <input name="user" type="text" placeholder="Usuário"/>
+        <input name="email" type="text" placeholder="Email"/>
+        <input type="submit" src="../layout/images/sign_in.gif" id="signin" alt="Sign In" />
+        <input name="senha" type="password" placeholder="Senha"/>
+        <div id="forgot"><a href="#" onclick="CadastroLogin('login')">Já possui cadastro??</a></div>
+      </fieldset>
+    </form>
+  </div>
+</div>
+<!-- ####################################################################################################### -->
+<div class="wrapper row2">
+  <div id="topnav">
+    <ul>
+      <li class="active"><a href="index.html">Home</a></li>
+      <li><a href="../Poesia.html">POESIAS</a></li>
+      <li><a href="pages/full-width.html">IA Responde</a></li>
+    </ul>
+    <div  class="clear"></div>
+  </div>
+</div>
+<!-- ####################################################################################################### -->
+<div class="wrapper row3">
+  <div id="featured_slide"> 
+    <!-- ####################################################################################################### -->
+    <ol>
+      <li>
+        <h2><span>Poetry API</span></h2>
+        <div><img src="images/poetryDBAPI.png" alt="" /></div>        
+      </li>
+      <li>
+        <h2><span>Wolfram Alpha API</span></h2>
+        <div><img src="images/wolfram_alpha_banner.png" alt="" /></div>
+      </li>
+      <li>
+        <h2><span>Nosso Site</span></h2>        
+        <div><img src="images/ApprenderIMG.png" alt="" /></div>
+      </li>      
+    </ol>
+    <!-- ####################################################################################################### --> 
+  </div>
+</div>
+<!-- ####################################################################################################### -->
+<div class="wrapper row4">
+  <div id="container" class="clear"> 
+    <!-- ####################################################################################################### -->
+    <div id="homepage" class="clear">
+      <h4>
+      	<p>Site Educacional voltado ao desenvolvimento de um trabalho interdisciplinar do curso de Engenharia de Computação da FESA, que engloba conceitos de Linguagem de Programação 3 e Engenharia de Software 2</p>    
+      </h4>
+    </div>
+    <!-- ####################################################################################################### --> 
+  </div>
+</div>
+<!-- ####################################################################################################### -->
+<div class="wrapper row5">
+  <div id="footer" class="clear"> 
+    <!-- ####################################################################################################### -->
+    <div class="foot_contact">
+      <h2>App.render</h2>      
+    </div>    
+    <div class="footbox last">
+      <h2>HOME</h2>      
+    </div>
+    <!-- ####################################################################################################### --> 
+  </div>
+</div>
+<!-- ####################################################################################################### -->
+<div class="wrapper">
+  <div id="copyright" class="clear">
+    <p class="fl_left">Copyright &copy; 2022 - Todos os Direitos Reservados - <a href="#">App.render</a></p>
+  </div>
+</div>
+<!-- liteAccordion is Homepage Only --> 
+<script type="text/javascript" src="layout/scripts/liteaccordion-v2.2/js/liteaccordion.jquery.min.js"></script> 
+<script type="text/javascript">
+$("#featured_slide").liteAccordion({
+    theme: "os-tpl",
+    containerWidth: 960, // fixed (px)
+    containerHeight: 360, // fixed (px) - overall height of the slider
+    headerWidth: 48, // fixed (px) - slide spine title
+    firstSlide: 1, // displays slide (n) on page load
+	activateOn: "click", // click or mouseover
+    autoPlay: false, // automatically cycle through slides
+    pauseOnHover: true, // pause slides on hover
+    rounded: false, // square or rounded corners
+    enumerateSlides: true, // put numbers on slides
+    slideSpeed: 800, // slide animation speed
+    cycleSpeed: 6000, // time between slide cycles
+});
+
+function CadastroLogin(type) {
+	if(type == 'login'){
+		document.getElementById("login").style.display = 'block';
+		document.getElementById("cadastro").style.display = 'none';
+	}
+	else if(type == 'cadastro'){
+		document.getElementById("cadastro").style.display = 'block';
+		document.getElementById("login").style.display = 'none';
+	}
+}
+</script>
+</body>
+</html>

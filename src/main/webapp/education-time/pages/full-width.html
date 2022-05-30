@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Education Time | Full Width</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" href="../layout/styles/layout.css" type="text/css" />
+<link rel="stylesheet" href="../layout/styles/forms.css" type="text/css" />
+<script src="../layout/scripts/index.js"></script>	
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>	    
+</head>
+<body id="top">
+<div class="wrapper row1">
+  <div id="header" class="clear">
+    <div class="fl_left">
+      <h1><a href="../index.html">App.render</a></h1>
+      <p>Site Educacional</p>
+    </div>
+    <form action="http://localhost:8089/WolframAlpha/BancoAPI" method="get" id="login">
+      <fieldset>
+        <legend>Login</legend>
+        <input name="senha" type="password" placeholder="Senha" />
+        <input name="user" type="text" placeholder="Usuário"/>
+        <div id="forgot"><a href="#" onclick="CadastroLogin('cadastro')">Ainda não possui cadastro?</a></div>
+        <input type="submit" src="../layout/images/sign_in.gif" id="signin" alt="Sign In" />
+      </fieldset>
+    </form>
+    <form action="http://localhost:8089/WolframAlpha/BancoAPI" method="post" id="cadastro" style="display:none;">
+      <fieldset>
+        <legend>Cadastro</legend>
+        <input name="user" type="text" placeholder="Usuário"/>
+        <input name="email" type="text" placeholder="Email"/>
+        <input type="submit" src="../layout/images/sign_in.gif" id="signin" alt="Sign In" />
+        <input name="senha" type="password" placeholder="Senha"/>
+        <div id="forgot"><a href="#" onclick="CadastroLogin('login')">Já possui cadastro??</a></div>
+      </fieldset>
+    </form>
+  </div>
+</div>
+<!-- ####################################################################################################### -->
+<div class="wrapper row2">
+  <div id="topnav">
+    <ul>
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="poesia.html">POESIAS</a></li>
+      <li class="active"><a href="full-width.html">IA Responde</a></li>
+    </ul>
+    <div  class="clear"></div>
+  </div>
+</div>
+<!-- ####################################################################################################### -->
+<div class="wrapper row4" style="background: #0F1021;">
+  <div id="container" class="clear"> 
+  	<div class="main">
+         <div class="box">
+         	<div class="input-group mb-3">
+			  <input id="txt" type="text" class="form-control" style="width: 40vw" placeholder="O que você quer saber?  - Escreva em Inglês" aria-label="Username" aria-describedby="basic-addon1">
+			  <span class="input-group-text" id="basic-addon1"><button id="btn" onclick="GetAnswer()" style="border: 0;">Perguntar</button></span>
+			</div>					
+		</div>
+     </div>
+    <div class="char">
+         <div id="cardBallon" class="speech">
+             Olá!
+         </div>
+         <iframe src='https://my.spline.design/untitled-433e164acc8a731b3e6186b284a278d0/'
+             frameborder='0' width='600px' height='400px'>
+         </iframe>
+     </div>
+     
+    <!-- ####################################################################################################### -->
+    <div class="clear"></div>
+  </div>
+</div>
+<!-- ####################################################################################################### -->
+<div class="wrapper row5">
+  <div id="footer" class="clear"> 
+    <!-- ####################################################################################################### -->
+    <div class="foot_contact">
+      <h2>App.render</h2>      
+    </div>    
+    <div class="footbox last">
+      <h2>IA Responde</h2>      
+    </div>
+    <!-- ####################################################################################################### --> 
+  </div>
+</div>
+<!-- ####################################################################################################### -->
+<div class="wrapper">
+  <div id="copyright" class="clear">
+    <p class="fl_left">Copyright &copy; 2022 - Todos os Direitos Reservados - <a href="#">App.render</a></p>
+  </div>
+</div>
+<script type="text/javascript">
+	function GetAnswer() {
+		var ballon = document.getElementById('cardBallon');
+		ballon.innerHTML = 'Hmmm...';
+		var content = document.getElementById('txt').value;
+		console.log('contetnt => '+content);			
+		var url = encodeURI('http://localhost:8089/WolframAlpha/Api?content='+content).replaceAll('%20', '+');
+		console.log('url => '+url);
+		fetch(url)
+		.then((response) => response.json())
+   		.then((responseJSON) => {				
+			ballon.innerHTML = responseJSON["sendRequest"]["msg"];
+		})
+		.catch(function(error) {
+			console.log(error.message);
+			ballon.innerHTML = 'Essa eu não sei';
+		});
+		
+	}
+	
+	function CadastroLogin(type) {
+		if(type == 'login'){
+			document.getElementById("login").style.display = 'block';
+			document.getElementById("cadastro").style.display = 'none';
+		}
+		else if(type == 'cadastro'){
+			document.getElementById("cadastro").style.display = 'block';
+			document.getElementById("login").style.display = 'none';
+		}
+	}
+</script>
+</body>
+</html>
